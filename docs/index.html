@@ -3,146 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python - Coding for idiots</title>
+    <title>CAIE Biology IGCSE - Topic 14 Flashcards</title>
     <style>
-        /* css */
         body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #F5F5F5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
             margin: 0;
-            padding: 0;
-            color: #333333;
-        }
-
-        a {
-            color: #306998;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* the fuking heade */
-        header {
-            background-color: #306998;
-            color: white;
-            padding: 15px 0;
-            text-align: center;
-        }
-
-        header img {
-            width: 150px;
-        }
-
-        /* Nav coloUr */
-        nav {
-            background-color: #FFD43B;
-            padding: 10px;
-            text-align: center;
-        }
-
-        nav a {
-            color: #333333;
-            font-weight: bold;
-            margin: 0 20px;
-        }
-
-        nav a:hover {
-            color: #306998;
-        }
-
-        /* the website's makeup */
-        main {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h1, h2 {
-            color: #306998;
+            color: #333;
         }
 
         h1 {
-            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #2c3e50;
         }
 
-        h2 {
-            font-size: 2em;
+        p.subtitle {
+            margin-bottom: 30px;
+            color: #7f8c8d;
         }
 
-        p {
-            font-size: 1.2em;
-            line-height: 1.6;
-        }
-
-        /* Box filled w/ c- */
-        .info-box {
-            background-color: #4B8BBE;
-            color: white;
-            padding: 15px;
-            border-radius: 4px;
+        /* Flashcard Container */
+        .flashcard-container {
+            width: 90%;
+            max-width: 600px;
+            height: 350px;
+            perspective: 1000px; /* Required for 3D effect */
             margin-bottom: 20px;
         }
 
-        /* Footer */
-        footer {
-            background-color: #4B8BBE;
-            color: white;
-            padding: 20px;
+        /* Inner card that flips */
+        .flashcard {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 0.6s ease-in-out;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 15px;
+        }
+
+        /* The flip class added via JavaScript */
+        .flashcard.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        /* Card Faces (Front and Back) */
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            box-sizing: border-box;
             text-align: center;
+            background-color: white;
+            border: 1px solid #e0e0e0;
         }
 
-        footer a {
+        /* Front Face */
+        .card-front {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2980b9;
+        }
+
+        /* Back Face */
+        .card-back {
+            transform: rotateY(180deg);
+            font-size: 1.2rem;
+            line-height: 1.5;
+            color: #444;
+        }
+
+        .citation {
+            display: block;
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: #95a5a6;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
             color: white;
+            background-color: #3498db;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
         }
 
-        footer a:hover {
-            color: #FFD43B;
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .counter {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .hint {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #7f8c8d;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <img src="https://www.python.org/static/img/python-logo.png" alt="Python Logo">
-    </header>
+    <h1>Coordination and Response</h1>
+    <p class="subtitle">CAIE Biology IGCSE Topic 14</p>
 
-    <!-- nav bar portal -->
-    <nav>
-        <a href="https://youtu.be/dQw4w9WgXcQ?si=UF9eBcCvNLLblvlW">About</a>
-        <a href="https://www.python.org/downloads/">Downloads</a>
-        <a href="https://www.python.org/doc/">Documentation</a>
-        <a href="https://pornhub/">Community</a>
-        <a href="https://media1.tenor.com/m/j0kI3rBp0LcAAAAC/kermit-the-frog-hanging.gif">success story</a>
-    </nav>
-
-    <!-- text -->
-    <main>
-        <div class="info-box">
-            <h2>Python for idiots</h2>
-            <p>This is an explanation for fucking idiots.</p>
+    <div class="flashcard-container" onclick="flipCard()">
+        <div class="flashcard" id="flashcard">
+            <div class="card-face card-front" id="card-front">
+                </div>
+            <div class="card-face card-back" id="card-back">
+                </div>
         </div>
+    </div>
 
-        <h1>Python For idiots</h1>
-        <p>Welcome! Are you a fucking idiot who thinks they can do coding? If so, you are wrong. You are too fucking stupid to do this. Go jump of a building you dumbass.</p>
+    <div class="controls">
+        <button id="prevBtn" onclick="prevCard()">Previous</button>
+        <div class="counter" id="counter">1 / 1</div>
+        <button id="nextBtn" onclick="nextCard()">Next</button>
+    </div>
+    <div class="hint">Click the card to flip</div>
 
-        <h2>Installing & viruses</h2>
-        <p>Installing Python is generally easy, and nowadays many Linux and UNIX distributions include a recent version of Python. Please be aware that there is a 99.99% chance that the software you download will include a virus!</p>
+    <script>
+        // Data parsed directly from the PMT Definitions document with strict citations.
+        const flashcards = [
+            { term: "Accomodation", definition: "The process by which the elastic lens changes its shape (with the aid of ciliary muscles and suspensory ligaments) to focus on near or distant objects. Light is focused onto the retina.<span class='citation'>[cite: 6, 7]</span>" },
+            { term: "Adrenal glands", definition: "Endocrine glands located above the kidneys that produce adrenaline.<span class='citation'>[cite: 8]</span>" },
+            { term: "Adrenaline", definition: "A hormone produced by the adrenal glands that is involved in the 'fight or flight' response. It increases heart rate, breathing rate and widens the pupils. Adrenaline also increases blood glucose concentration.<span class='citation'>[cite: 9, 10]</span>" },
+            { term: "Antagonistic muscles", definition: "Pairs of muscles that work in an opposing fashion e.g. circular and radial muscles.<span class='citation'>[cite: 11]</span>" },
+            { term: "Auxins", definition: "A group of plant hormones that stimulate growth in shoot tips. They are involved in plant tropisms.<span class='citation'>[cite: 12]</span>" },
+            { term: "Blind spot", definition: "The area at the back of the eye where the optic nerve exits the eye. It lacks receptor cells so cannot detect an image.<span class='citation'>[cite: 13, 14]</span>" },
+            { term: "Central nervous system (CNS)", definition: "The brain and spinal cord.<span class='citation'>[cite: 15]</span>" },
+            { term: "Ciliary muscle", definition: "A ring of smooth muscle that controls the shape of the lens.<span class='citation'>[cite: 16]</span>" },
+            { term: "Circular muscles", definition: "Muscles of the iris that are involved in the pupil reflex action. In bright light, the circular muscles contract to constrict the pupil. Less light enters the eye.<span class='citation'>[cite: 17, 18]</span>" },
+            { term: "Cone cells", definition: "Cells found in the retina that are sensitive to high light intensity (bright light). There are three types of cone cells that can detect light of different colours.<span class='citation'>[cite: 19, 20]</span>" },
+            { term: "Cornea", definition: "The transparent outer covering of the eye which refracts light entering the eye.<span class='citation'>[cite: 21]</span>" },
+            { term: "Dopamine", definition: "A stimulant neurotransmitter which causes a short term 'high'.<span class='citation'>[cite: 22]</span>" },
+            { term: "Effector", definition: "An organ, tissue, or cell that produces a response to a stimulus.<span class='citation'>[cite: 23]</span>" },
+            { term: "Endocrine glands", definition: "Glands of the endocrine system that secrete hormones directly into the bloodstream.<span class='citation'>[cite: 24]</span>" },
+            { term: "Endocrine system", definition: "A collection of glands that secrete hormones into the bloodstream. Transmission of signals is slow and the effects are long-lasting.<span class='citation'>[cite: 31, 32]</span>" },
+            { term: "Fovea", definition: "A region of the retina with a high density of cone cells.<span class='citation'>[cite: 33]</span>" },
+            { term: "Glucagon", definition: "A hormone secreted by the pancreas when blood glucose concentration is too low. It causes the breakdown of glycogen to glucose in the liver.<span class='citation'>[cite: 34, 35]</span>" },
+            { term: "Gravitropism", definition: "A plant's growth response to gravity.<span class='citation'>[cite: 36]</span>" },
+            { term: "Hair erector muscles", definition: "Tiny muscles found in the skin which contract causing hairs to stand erect.<span class='citation'>[cite: 37]</span>" },
+            { term: "Heroin", definition: "An illegal drug that stimulates receptors at synapses in the brain, causing dopamine release.<span class='citation'>[cite: 38]</span>" },
+            { term: "Homeostasis", definition: "The maintenance of a stable internal environment in the body (within set limits) despite fluctuations in internal and external conditions.<span class='citation'>[cite: 39]</span>" },
+            { term: "Hormone", definition: "A cell signalling molecule produced by endocrine glands and released into the blood. It travels to a target organ and binds to receptors on effectors, initiating a response.<span class='citation'>[cite: 40, 41]</span>" },
+            { term: "Hypothalamus", definition: "A structure in the brain that contains the thermoregulatory centre. It coordinates information from the receptors and sends instructions to the effectors.<span class='citation'>[cite: 42, 43]</span>" },
+            { term: "Insulin", definition: "A hormone secreted by the pancreas when blood glucose concentration is too high. It causes liver and muscle cells to increase their uptake of glucose and the conversion of glucose to glycogen in the liver.<span class='citation'>[cite: 44, 45]</span>" },
+            { term: "Involuntary action", definition: "An action that does not involve conscious thought. Also known as a reflex action.<span class='citation'>[cite: 46]</span>" },
+            { term: "Iris", definition: "A pigmented ring of circular and radial muscles. It controls the size of the pupil to alter how much light enters the eye.<span class='citation'>[cite: 47, 48]</span>" },
+            { term: "Lens", definition: "The transparent structure at the front of the eye which refracts light, focusing it onto the retina. The lens is attached to a ring of ciliary muscle via suspensory ligaments.<span class='citation'>[cite: 49, 50]</span>" },
+            { term: "Motor neurone", definition: "A neurone that carries nerve impulses from the CNS to the effectors.<span class='citation'>[cite: 51]</span>" },
+            { term: "Negative feedback", definition: "A corrective mechanism that allows only small shifts from a set point, reversing a change in conditions.<span class='citation'>[cite: 52]</span>" },
+            { term: "Negative plant tropism", definition: "The growth of a plant away from a stimulus.<span class='citation'>[cite: 53]</span>" },
+            { term: "Nerve impulse", definition: "An electrical signal that travels along neurones.<span class='citation'>[cite: 54]</span>" },
+            { term: "Nervous system", definition: "A collection of nerves and neurones involved in the transmission of electrical impulses. Transmission of signals is rapid and the effects are short-lived.<span class='citation'>[cite: 55, 56]</span>" },
+            { term: "Neurone", definition: "A specialised cell that transmits nerve impulses. Also known as a nerve cell.<span class='citation'>[cite: 57]</span>" },
+            { term: "Neurotransmitter", definition: "Chemicals that are used for communication between neurones and their target cells. Neurotransmitters are stored in synaptic vesicles in the presynaptic neurone and released into the synaptic cleft.<span class='citation'>[cite: 63, 64]</span>" },
+            { term: "Oestrogen", definition: "A female sex hormone released by the ovaries that is involved in the development of the female secondary sexual characteristics. It also causes the growth and repair of the uterus lining during the menstrual cycle.<span class='citation'>[cite: 65, 66]</span>" },
+            { term: "Optic nerve", definition: "A nerve at the back of the eye that transmits nerve impulses to the brain from the retina.<span class='citation'>[cite: 67]</span>" },
+            { term: "Ovaries", definition: "A pair of endocrine glands in females that secrete oestrogen into the bloodstream.<span class='citation'>[cite: 68]</span>" },
+            { term: "Pancreas", definition: "An endocrine gland situated behind the stomach that produces insulin.<span class='citation'>[cite: 69]</span>" },
+            { term: "Peripheral nervous system", definition: "Pairs of nerves that originate from the CNS and carry nerve impulses into and out of the CNS.<span class='citation'>[cite: 70]</span>" },
+            { term: "Phototropism", definition: "A plant's growth response to light.<span class='citation'>[cite: 71]</span>" },
+            { term: "Plant tropism", definition: "The growth response of a plant to a stimulus.<span class='citation'>[cite: 72]</span>" },
+            { term: "Positive plant tropism", definition: "The growth of a plant towards a stimulus.<span class='citation'>[cite: 73]</span>" },
+            { term: "Pupil", definition: "The aperture of the iris through which light rays enter the eye.<span class='citation'>[cite: 74]</span>" },
+            { term: "Pupil reflex", definition: "A type of reflex action. The size of the pupil changes in response to exposure of the eye to different light intensities. Pupil size is controlled by the antagonistic circular and radial muscles in the iris.<span class='citation'>[cite: 75, 76]</span>" },
+            { term: "Radial muscles", definition: "Muscles of the iris that are involved in the pupil reflex action. In dim light, the radial muscles contract to dilate the pupil. More light enters the eye.<span class='citation'>[cite: 77, 78]</span>" },
+            { term: "Receptor", definition: "A specialised structure that detects a specific type of stimulus.<span class='citation'>[cite: 79]</span>" },
+            { term: "Reflex", definition: "A rapid, automatic response to a sensory stimulus by the body. It serves as a protective mechanism.<span class='citation'>[cite: 80]</span>" },
+            { term: "Reflex arc", definition: "The pathway of neurones involved in a reflex action: stimulus → receptor → sensory → relay → motor → effector → response<span class='citation'>[cite: 81, 82]</span>" },
+            { term: "Relay neurone", definition: "A neurone located in the spinal cord that links the sensory neurone to the motor neurone.<span class='citation'>[cite: 83]</span>" },
+            { term: "Retina", definition: "A specialised layer at the back of the eye composed of light receptors. It converts light energy into neural signals which are sent to the brain via the optic nerve.<span class='citation'>[cite: 84, 85]</span>" },
+            { term: "Rod cells", definition: "Cells in the retina that are sensitive to low light intensity (dim light).<span class='citation'>[cite: 86]</span>" },
+            { term: "Sense organ", definition: "A group of specialised receptor cells that respond to certain stimuli. The five sense organs are the eyes, ears, nose, skin and tongue.<span class='citation'>[cite: 92, 93]</span>" },
+            { term: "Sensory neurone", definition: "A neurone that carries nerve impulses from the receptors to the CNS.<span class='citation'>[cite: 94]</span>" },
+            { term: "Shivering", definition: "The involuntary contraction of muscles which generates heat from respiration.<span class='citation'>[cite: 95]</span>" },
+            { term: "Stimulus", definition: "A change in an organism's internal or external environment that can be detected.<span class='citation'>[cite: 96]</span>" },
+            { term: "Suspensory ligaments", definition: "A series of fibres that attach the lens to a ring of ciliary muscle.<span class='citation'>[cite: 97]</span>" },
+            { term: "Sweat glands", definition: "Small tubular structures that secrete sweat onto the surface of the skin.<span class='citation'>[cite: 98]</span>" },
+            { term: "Sweating", definition: "The secretion of sweat onto the surface of the skin by sweat glands. The evaporation of water in sweat removes heat energy from the skin.<span class='citation'>[cite: 99, 100]</span>" },
+            { term: "Synapse", definition: "The junction between two nerve cells or a nerve cell and an effector that ensures nerve impulses can travel in one direction only.<span class='citation'>[cite: 101]</span>" },
+            { term: "Synaptic cleft", definition: "A small gap between neurones across which a nerve impulse is transmitted via neurotransmitters.<span class='citation'>[cite: 102]</span>" },
+            { term: "Synaptic vesicles", definition: "Secretory vesicles located in the presynaptic neurone that store neurotransmitters and release them into the synaptic cleft on arrival of a nerve impulse.<span class='citation'>[cite: 103, 104]</span>" },
+            { term: "Testes", definition: "A pair of endocrine glands in males which secrete testosterone into the bloodstream.<span class='citation'>[cite: 105]</span>" },
+            { term: "Testosterone", definition: "A male sex hormone released by the testes that is involved in the development of the male secondary sexual characteristics.<span class='citation'>[cite: 106]</span>" },
+            { term: "Thermoregulatory centre", definition: "An area of the hypothalamus that regulates body temperature. It contains receptors sensitive to blood temperature.<span class='citation'>[cite: 107]</span>" },
+            { term: "Type 1 diabetes", definition: "A type of diabetes in which the pancreas fails to produce enough insulin. It is controlled using daily insulin injections, limiting refined sugar intake and getting regular exercise.<span class='citation'>[cite: 108, 109]</span>" },
+            { term: "Vasoconstriction", definition: "Constriction of arterioles near the surface of the skin. Less blood flows close to the skin surface, decreasing heat loss to the surroundings.<span class='citation'>[cite: 110, 111]</span>" },
+            { term: "Vasodilation", definition: "Dilation of arterioles near the surface of the skin. This allows blood to flow closer to the skin surface, increasing heat loss to the surroundings.<span class='citation'>[cite: 112, 113]</span>" },
+            { term: "Voluntary action", definition: "An action that involves conscious thought.<span class='citation'>[cite: 114]</span>" },
+            { term: "2,4-D", definition: "A selective weedkiller that distorts the growth of broad-leaved weeds and increases their rate of respiration so much so that all food reserves are used up and the weed dies.<span class='citation'>[cite: 120]</span>" }
+        ];
 
-        <h2>Learning</h2>
-        <p>Don't learn if you can't do it skill issue. If you do legitamently can not live without python, please click the 'about' page up top on the navigation bar.</p>
-    </main>
+        let currentIndex = 0;
+        const flashcardElement = document.getElementById("flashcard");
+        const frontElement = document.getElementById("card-front");
+        const backElement = document.getElementById("card-back");
+        const counterElement = document.getElementById("counter");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Python Software Foundation</p>
-        <p><a href="patreon.com/Howtodoanything24">Donate</a> | <a href="there_wassmthtobehere">Privacy Policy</a></p>
-    </footer>
+        function updateCard() {
+            // Remove flip animation if present
+            flashcardElement.classList.remove("is-flipped");
+            
+            // Wait slightly for animation to clear before changing content
+            setTimeout(() => {
+                const currentCard = flashcards[currentIndex];
+                frontElement.innerHTML = currentCard.term;
+                backElement.innerHTML = currentCard.definition;
+                counterElement.textContent = `${currentIndex + 1} / ${flashcards.length}`;
+                
+                // Update button states
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex === flashcards.length - 1;
+            }, 150); 
+        }
 
+        function flipCard() {
+            flashcardElement.classList.toggle("is-flipped");
+        }
+
+        function nextCard() {
+            if (currentIndex < flashcards.length - 1) {
+                currentIndex++;
+                updateCard();
+            }
+        }
+
+        function prevCard() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCard();
+            }
+        }
+
+        // Initialize the first card on load
+        updateCard();
+    </script>
 </body>
 </html>
